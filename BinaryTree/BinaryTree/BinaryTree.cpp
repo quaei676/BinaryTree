@@ -11,6 +11,40 @@ struct Node
     int data;
     int index;
 };
+int fibsearch(int number[], int searchnum, int fibnum, int index)
+{
+    fibnum--;
+    if (fibnum < 0 || index < 0)
+        return -1;
+
+    if (number[index] < searchnum)
+    {
+        index += fib(fibnum);
+    }
+    else if (number[index] > searchnum)
+    {
+        index -= fib(fibnum);
+    }
+    else if (number[index] == searchnum)
+    {
+        return index;
+    }
+
+    fibsearch(number, searchnum, fibnum, index);
+}
+int FibSearch(int number[], int searchnum)
+{
+    int index = 0;
+    while (fib(index) <= (MAX))
+    {
+        index++;
+    }
+    index--;
+    int m = MAX - fib(index);
+    index--;
+
+    return fibsearch(number, searchnum, index, (number[index - 1] < searchnum) ? (fib(index) + m - 1) : (fib(index)));
+}
 int BinarySearch(int *a, int startindex, int endindex, int searachnum)
 {
     int middle = (startindex + endindex) >> 1;
